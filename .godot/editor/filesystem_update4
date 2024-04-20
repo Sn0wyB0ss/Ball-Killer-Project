@@ -1,0 +1,5 @@
+res://Scenes/test_level.tscn
+res://Scenes/player.tscn
+res://Scenes/player.gd
+res://Scenes/ball.tscn
+res://Scripts/player.gd

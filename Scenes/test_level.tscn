@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://11rec151qaym"]
+
+[ext_resource type="PackedScene" uid="uid://balr1x5t45d8e" path="res://Scenes/player.tscn" id="1_igkg3"]
+[ext_resource type="PackedScene" uid="uid://b61thya14vdiq" path="res://Scenes/ball.tscn" id="2_ekf74"]
+
+[node name="TestLevel" type="Node2D"]
+position = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("1_igkg3")]
+position = Vector2(-1, 58)
+
+[node name="Ball" parent="." instance=ExtResource("2_ekf74")]
+position = Vector2(0, 164)

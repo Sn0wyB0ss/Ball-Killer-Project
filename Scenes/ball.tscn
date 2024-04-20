@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b61thya14vdiq"]
+
+[ext_resource type="Texture2D" uid="uid://b41dth5jng0ay" path="res://Assets/Ball.png" id="1_dfuax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ekffj"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4vfr"]
+
+[node name="Ball" type="RigidBody2D"]
+gravity_scale = 0.0
+linear_damp = 0.2
+
+[node name="Ball" type="Sprite2D" parent="."]
+position = Vector2(0.250001, -11.25)
+scale = Vector2(0.0346774, 0.0346774)
+texture = ExtResource("1_dfuax")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_ekffj")
+
+[node name="PlayerCatch" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCatch"]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_g4vfr")
