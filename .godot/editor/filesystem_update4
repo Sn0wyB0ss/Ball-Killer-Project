@@ -1,5 +1,6 @@
+res://Scenes/ball.tscn
+res://Scripts/ball.gd
 res://Scenes/test_level.tscn
 res://Scenes/player.tscn
-res://Scenes/player.gd
-res://Scenes/ball.tscn
+res://Singleton/game_manager.tscn
 res://Scripts/player.gd

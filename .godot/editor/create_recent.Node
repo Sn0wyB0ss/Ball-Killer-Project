@@ -1,6 +1,6 @@
+CharacterBody2D
 Timer
 CollisionShape2D
 Area2D
 RigidBody2D
 Camera2D
-CharacterBody2D
