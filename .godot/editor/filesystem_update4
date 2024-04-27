@@ -1,6 +1,8 @@
-res://Scenes/ball.tscn
-res://Scripts/ball.gd
 res://Scenes/test_level.tscn
+res://Scenes/ball.tscn
 res://Scenes/player.tscn
 res://Singleton/game_manager.tscn
+res://Scripts/ball.gd
 res://Scripts/player.gd
+res://Scenes/enemy_placeholder.tscn
+res://Scripts/enemy_placeholder.gd

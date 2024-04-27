@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://balr1x5t45d8e"]
+[gd_scene load_steps=6 format=3 uid="uid://balr1x5t45d8e"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_bepas"]
 [ext_resource type="Texture2D" uid="uid://5s2ojpxlklbx" path="res://icon.svg" id="2_1mk23"]
 [ext_resource type="Texture2D" uid="uid://b41dth5jng0ay" path="res://Assets/Ball.png" id="3_xwh7s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1cfnq"]
-radius = 31.0644
+radius = 19.0263
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4bhwy"]
+radius = 31.5
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 0
@@ -36,3 +39,20 @@ one_shot = true
 position = Vector2(4.76837e-07, 0)
 scale = Vector2(0.0435484, 0.0435484)
 texture = ExtResource("3_xwh7s")
+
+[node name="HitArea" type="Area2D" parent="."]
+position = Vector2(0, 31)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource("CircleShape2D_4bhwy")
+disabled = true
+
+[node name="AttackDuration" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="KickDelay" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true

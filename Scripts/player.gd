@@ -5,6 +5,11 @@ extends CharacterBody2D
 @onready var ball = $Ball
 @onready var icon = $Icon
 @onready var camera_2d = $Camera2D
+@onready var collision_shape_2d = $HitArea/CollisionShape2D
+@onready var attack_duration = $AttackDuration
+@onready var hit_area = $HitArea
+@onready var kick_delay = $KickDelay
+
 
 #Preload Scene Variables
 const BALL = preload("res://Scenes/ball.tscn")
@@ -26,6 +31,7 @@ enum PLAYER_STATE {
 var direction : Vector2 = Vector2.ZERO
 var fixed_direction: Vector2 = Vector2(1,0)
 var player_state = PLAYER_STATE.IDLE
+var prev_state = player_state
 var dash_stop_count = 0
 var dash_stop_max = 4
 var ball_gathered = true
@@ -35,6 +41,9 @@ func _ready():
 	GameManager.camera_node = camera_2d
 
 func _physics_process(delta):
+	
+	prev_state = player_state
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
@@ -42,6 +51,7 @@ func _physics_process(delta):
 	if direction != Vector2.ZERO:
 		fixed_direction = direction
 		ball.position = icon.position + (direction * 32)
+		hit_area.position = icon.position + (direction * 32)
 	
 	match player_state:
 		PLAYER_STATE.IDLE:
@@ -55,10 +65,21 @@ func player_state_idle():
 	
 	ball.visible = ball_gathered
 	
+	if (Input.is_action_just_pressed("attack")) and (!ball_gathered) and attack_duration.time_left <= 0.0:
+		attack_duration.start()
+		collision_shape_2d.disabled = false
+	
+	if (attack_duration.time_left <= 0.0):
+		collision_shape_2d.disabled = true
+	
+	if (ball_gathered):
+		attack_duration.stop()
+		collision_shape_2d.disabled = true
+	
 	if (Input.is_action_just_pressed("dash")) and (dash_delay.time_left <= 0.0):
 		player_state = PLAYER_STATE.DASH
 		
-	if (Input.is_action_just_pressed("kick")) and ball_gathered:
+	if (Input.is_action_just_pressed("kick")) and ball_gathered and kick_delay.time_left <= 0.0:
 		ball_gathered = false
 		var ball_instance = BALL.instantiate()
 		GameManager.add_child(ball_instance)
@@ -88,6 +109,9 @@ func player_state_dash(delta):
 	velocity = Vector2.ZERO
 	global_position += (fixed_direction * (DASH_DISTANCE / dash_stop_max)) * delta
 	dash_stop_count += 1
+
+func start_kick_delay():
+	kick_delay.start()
 
 func get_camera():
 	return camera_2d
