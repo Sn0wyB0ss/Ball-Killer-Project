@@ -51,7 +51,7 @@ func _physics_process(delta):
 	if direction != Vector2.ZERO:
 		fixed_direction = direction
 		ball.position = icon.position + (direction * 32)
-		hit_area.position = icon.position + (direction * 32)
+		#hit_area.position = icon.position + (direction * 32)
 	
 	match player_state:
 		PLAYER_STATE.IDLE:
@@ -85,6 +85,7 @@ func player_state_idle():
 		GameManager.add_child(ball_instance)
 		ball_instance.global_position = ball.global_position + (fixed_direction * 32)
 		ball_instance.direction = fixed_direction
+		ball_instance.throw_initial_check()
 		
 	
 	# Horizontal Accel and Deccel Check

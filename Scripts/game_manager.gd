@@ -12,5 +12,8 @@ func _ready():
 func _process(delta):
 	pass
 
+func angle_to_angle_neg(angle):
+	return rad_to_deg(int(angle + 180 + 360) % 360 - 180)
+
 func get_camera():
 	return camera_node

@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://11rec151qaym"]
+[gd_scene load_steps=3 format=3 uid="uid://11rec151qaym"]
 
 [ext_resource type="PackedScene" uid="uid://balr1x5t45d8e" path="res://Scenes/player.tscn" id="1_igkg3"]
+[ext_resource type="PackedScene" uid="uid://dqc6r7cnfwkbo" path="res://Scenes/enemy_placeholder.tscn" id="2_lrtvr"]
 
 [node name="TestLevel" type="Node2D"]
 position = Vector2(2, 2)
 
 [node name="Player" parent="." instance=ExtResource("1_igkg3")]
 position = Vector2(-1, 58)
+
+[node name="EnemyPlaceholder2" parent="." instance=ExtResource("2_lrtvr")]
+position = Vector2(-487, 305)
+
+[node name="EnemyPlaceholder3" parent="." instance=ExtResource("2_lrtvr")]
+position = Vector2(533, -215)
